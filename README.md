@@ -11,3 +11,5 @@ PORT=3000
 - npx prisma migrate dev
 
 - to start: node src/index.js
+
+- api docs: https://api.postman.com/collections/23648011-fc63ed47-1bef-4cfa-a6a3-f472bdd43b77?access_key=PMAT-01HXE9MWEK2FRJ2QJF0ZS7NQVH
