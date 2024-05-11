@@ -6,6 +6,7 @@ import expressFileUpload from "express-fileupload"
 import coffeeController from "./controller/coffee-controller.js";
 import coffeeService from "./service/coffee-service.js";
 import categoryController from "./controller/category-controller.js";
+import cartController from "./controller/cart-controller.js";
 
 
 const publicRouter = express.Router()
@@ -24,6 +25,9 @@ userRouter.get("/c/:coffeeId", coffeeController.getById)
 
 userRouter.get("/category", categoryController.getAll)
 userRouter.get("/category/:categoryId", categoryController.getById)
+
+userRouter.post("/add-to-cart/:coffeeId", cartController.addToCart)
+userRouter.get("/cart", cartController.cart)
 
 const adminRouter = express.Router()
 adminRouter.use(authMiddleware)

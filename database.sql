@@ -9,7 +9,7 @@ select * from coffees;
 
 delete
 from coffees
-where name is not null;
+where coffees.name is not null;
 
 desc coffee_categories;
 
@@ -24,3 +24,8 @@ select *
 from coffee_categories;
 
 drop table coffees;
+
+select *
+from carts;
+
+desc carts;

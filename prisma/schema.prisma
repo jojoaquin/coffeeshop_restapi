@@ -18,6 +18,11 @@ enum Role {
   ADMIN
 }
 
+enum Status {
+  PAID
+  UNPAID
+}
+
 model User {
   id         Int     @id @default(autoincrement())
   email      String  @unique @db.VarChar(100)
@@ -26,6 +31,7 @@ model User {
   role       Role    @default(USER)
   token      String? @db.VarChar(100)
   expired_at BigInt? @db.BigInt
+  cart       Cart[]
 
   @@map("users")
 }
@@ -38,6 +44,7 @@ model Coffee {
   price      Decimal        @db.Decimal()
   categoryId Int
   category   CoffeeCategory @relation(fields: [categoryId], references: [id])
+  cart       Cart[]
 
   @@map("coffees")
 }
@@ -48,4 +55,17 @@ model CoffeeCategory {
   coffee Coffee[]
 
   @@map("coffee_categories")
+}
+
+model Cart {
+  id         Int     @id @default(autoincrement())
+  userId     Int     @db.Int
+  coffeeId   String  @db.VarChar(100)
+  qty        Int     @db.Int
+  totalPrice Decimal @db.Decimal()
+  status     Status  @default(UNPAID)
+  user       User    @relation(fields: [userId], references: [id])
+  coffee     Coffee  @relation(fields: [coffeeId], references: [id])
+
+  @@map("carts")
 }
