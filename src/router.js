@@ -4,7 +4,6 @@ import authMiddleware from "./middleware/auth-middleware.js";
 import roleMiddleware from "./middleware/role-middleware.js";
 import expressFileUpload from "express-fileupload"
 import coffeeController from "./controller/coffee-controller.js";
-import coffeeService from "./service/coffee-service.js";
 import categoryController from "./controller/category-controller.js";
 import cartController from "./controller/cart-controller.js";
 
@@ -28,6 +27,7 @@ userRouter.get("/category/:categoryId", categoryController.getById)
 
 userRouter.post("/add-to-cart/:coffeeId", cartController.addToCart)
 userRouter.get("/cart", cartController.cart)
+userRouter.delete("/delete-cart/:cartId", cartController.deleteCart)
 
 const adminRouter = express.Router()
 adminRouter.use(authMiddleware)
